@@ -1,6 +1,12 @@
 import { API_URL } from "@/app/constans";
 import styles from "@/styles/movie-videos.module.css";
 
+interface IVideoProps {
+  id: string;
+  name: string;
+  key: string;
+}
+
 async function getVideos(id: string) {
   const response = await fetch(`${API_URL}/${id}/videos`);
   return response.json();
@@ -11,7 +17,7 @@ export default async function MovieVideos({ id }: { id: string }) {
 
   return (
     <div className={styles.container}>
-      {videos.map((video) => (
+      {videos.map((video: IVideoProps) => (
         <iframe
           key={video.id}
           src={`https://youtube.com/embed/${video.key}`}
